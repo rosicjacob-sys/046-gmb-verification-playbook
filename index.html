@@ -94,7 +94,7 @@
   <li><strong>The market shifted under you in late 2025:</strong> SMS-Activate (the default tool for years) <strong>shut down Dec 2025</strong>; its infrastructure was bought by <strong>HeroSMS</strong>. 5SIM is still up but runs shared pools with known reliability issues on strict platforms like Google. Numbers that reliably work now: <strong>non-VoIP / real-SIM inventory</strong> (SMSPool, TextVerified's non-VoIP line, iDenfy, higher-priced "Google" slots) — or your own prepaid SIMs.</li>
   <li><strong>Suspension wave since ~Sept 2025.</strong> Practitioners with 1,000+ profiles report 1–3 suspensions per week <em>even for freshly video-verified profiles</em>. In the wellness/peptide vertical expect more (§11). Appeals with proper documentation are reinstating well. Your old dormant accounts are an asset — but only if warmed up and isolated, because one <strong>restricted account suspends everything it manages</strong>.</li>
 </ol>
-<div class="note"><strong>New operating model:</strong> treat verification as a <strong>funnel, not a blocker</strong>. For each profile: (1) maximize the chance Google offers phone/email by building a "boring, real-looking" submission (§2); (2) have 2–3 phone-number tiers ready — owned SIM &gt; non-VoIP rental &gt; shared pool (§4); (3) if only video is offered, run the §5 production line so it passes first or second try; (4) everything through warmed accounts on isolated US residential IPs + anti-detect profiles (§6); (5) expect ~1–5% of output to need appeals and keep a standing evidence kit (§7).</div>
+<div class="note"><strong>New operating model:</strong> treat verification as a <strong>funnel, not a blocker</strong>. Before anything else — <strong>step zero</strong>: the metro must have (a) at least one owned number provisioned (§4 step zero; most teams start with *zero* US numbers — that's procurement, not research) and (b) an assigned filming plan for any video path (§5 remote operations). For each profile: (1) maximize the chance Google offers phone/email by building a "boring, real-looking" submission (§2); (2) have 2–3 phone-number tiers ready — owned SIM &gt; non-VoIP rental &gt; shared pool (§4); (3) if only video is offered, run the §5 production line so it passes first or second try; (4) everything through warmed accounts on isolated US residential IPs + anti-detect profiles (§6); (5) expect ~1–5% of output to need appeals and keep a standing evidence kit (§7).</div>
 </section>
 
 <section class="card" id="s2">
@@ -147,9 +147,20 @@
 
 <section class="card" id="s4">
 <h2 class="sec"><span class="secnum">§4</span>The phone-number pipeline that works in late-2026</h2>
+
+<h3>Step zero — you have <em>zero</em> US numbers (the team's actual starting point)</h3>
+<p>Everything below assumes number procurement is already solved. If the team literally has no US/CA number able to receive texts, fix it on day 1–2 with a ~$30–40 standing kit — this is logistics, not research:</p>
+<ul>
+  <li><strong>Hushed</strong> (hushed.com): $6.99/mo unlimited or $7.99 prepaid (30/90/365-day plans); US, CA and UK numbers across 300+ area codes; the number lands in the app within minutes and receives calls/texts from any sender — Google's verification SMS arrives right there. No SIM, no shipping; pick a CA number for Canadian profiles.</li>
+  <li><strong>Burner / 2ndLine</strong>: ~$5/mo per US number — same idea, second source so you're not single-vendor dependent.</li>
+  <li><strong>TextNow / TextFree</strong> (free): free US + CA in-app numbers that receive SMS; backup tier 0 only — recycled pool means some are already flagged, keep 2–3 on standby.</li>
+</ul>
+<p>These are <em>dedicated</em> real working numbers: unlike shared OTP pools (textverified/5SIM) they aren't being hammered by thousands of other users, so Google's per-number usage limits apply cleanly and the number stays reachable later for re-verification / "we may call or text your listed number" events. Put Hushed/Burner on the profile as the default listing number; keep T3 SIMs (table below) as the escalation + appeal-evidence tier. Log every number in <code>docs/PHONE_LEDGER.md</code> with area code → assigned metro.</p>
+
 <p><strong>Tier structure (use top-down; log every number in <code>docs/PHONE_LEDGER.md</code>):</strong></p>
 <table>
 <tr><th>Tier</th><th>Source</th><th>Typical cost</th><th>Role</th></tr>
+<tr><td><strong>T3-lite — Owned app-based lines (day-1 default)</strong></td><td>Hushed ($6.99–7.99/mo, US/CA), Burner (~$5/mo), TextNow (free backup) — dedicated real working numbers delivered in-app within minutes; receive SMS from any sender</td><td>$0–8/mo each</td><td>The "we have no numbers at all" tier: always beats a shared pool for GBP because the number is yours alone and stays reachable; VoIP-classified, so keep T3 SIMs as escalation</td></tr>
 <tr><td><strong>T3 — Owned real SIMs (best)</strong></td><td>US prepaid MVNO lines: Mint Mobile, Visible, Tello, US Mobile, Consumer Cellular. Order in bulk (multiple lines per account; physical SIM or eSIM). Keep 20–50 numbers in a standing pool.</td><td>~$10–35/mo/line on promos; cheaper data-only plans where allowed</td><td>Highest success rate; also the "proof" number when appeals ask you to receive an automated call/text (Google has stated it may contact verified numbers via <strong>call, text, or WhatsApp</strong> — announced March 2026). Note: some Tello lines show up as VoIP in carrier-lookup DBs → prefer Mint/Visible (T-Mobile network) for critical profiles</td></tr>
 <tr><td><strong>T2 — Non-VoIP rented numbers (good)</strong></td><td>SMSPool, TextVerified's explicit non-VoIP line, iDenfy "SMS check" (practitioners report reliability on Google), higher-priced per-activation slots marketed as real SIMs</td><td>varies; budget ~$0.5–3/number for US Google-grade</td><td>Default working tier for volume; expect 1 in 2–4 numbers to fail before one delivers</td></tr>
 <tr><td><strong>T1 — Shared-pool OTP services (cheap, lottery)</strong></td><td><strong>HeroSMS</strong> (bought SMS-Activate's infrastructure/suppliers after its Dec-2025 shutdown — the direct successor), 5SIM (independent; from ~$0.01, but shared pool = lower hit-rate on strict platforms), sms-man / SMSPVA (budget)</td><td>$0.05–0.6/number US</td><td>Only for high-volume low-stakes attempts; stop after 2 fails and move to T2/T3</td></tr>
@@ -176,6 +187,19 @@
 <section class="card" id="s5">
 <h2 class="sec"><span class="secnum">§5</span>Video verification playbook (your default path in 2026 — make it a production line)</h2>
 <p>Google's stated requirements: <strong>(1)</strong> current location context (street, building signage, surrounding businesses), <strong>(2)</strong> business equipment (office fixtures, furniture, displays), <strong>(3)</strong> proof of management/operations (business license, storage room, POS system). Plus the selfie step. Review = up to 3–5 business days; some submissions auto-clear in hours. Denial → re-upload is allowed.</p>
+
+<h3>Remote operations — when nobody on your team is at that location (PH-based team, US/CA listings)</h3>
+<p>Video verification does not require <em>you</em> to be there; it requires footage from the location. Run it as a delegated production line:</p>
+<ol>
+  <li><strong>Client / business staff films it (default for client profiles).</strong> For clinics and other client businesses, send the owner/staff the filming script below during onboarding — the "verification kit" is part of your claim package. ~10 minutes on site; receive raw files over WhatsApp/Drive. At 300 listings/mo this one habit removes video as a blocker for most profiles.</li>
+  <li><strong>Hire a local shooter</strong> (no client access / unresponsive owner): TaskRabbit-style errand or photo gigs in the target city, Fiverr local photographers, or staff at a neighboring business — <strong>$20–50 per location</strong>. Same script + address + exact profile name; collect raw footage (1080p+, no edits).</li>
+  <li><strong>Batch by metro.</strong> Cluster the queue by city (same clustering as §6). One on-site pass per metro covers every nearby listing in a single drive-by/walk-through: amortizes cost and keeps geo signals coherent across the cluster.</li>
+  <li><strong>No physical storefront at all?</strong> Don't force video: structure the listing as service-area (hide address, list service areas) or anchor it to a real documented office/suite — pair with §3's trust stack so the risk engine prefers phone/email. If Google still demands video on an SAB, film from where operations actually happen via option 1 or 2.</li>
+  <li><strong>Last resort: verification-as-a-service</strong> — operators who handle the on-site visit for a fee; use when volume justifies, log cost per listing.</li>
+</ol>
+<div class="note"><strong>Filming script to send to whoever is on site (paste-ready):</strong><br>
+We're verifying <strong>{Business Name}</strong> at {full address}. Please record short phone clips (~30–45 seconds each), daytime, natural light, landscape mode — no editing, music, captions or screen recording: (1) stand on the street facing the storefront and pan slowly so the sign reading exactly "{Business Name}" is clearly legible (must match the Google profile character-for-character); (2) show the entrance/door number plus neighboring businesses for context; (3) walk inside and show the work area — counter/reception, equipment, shelves, POS register (~10–20 seconds of real movement; an empty staged room gets denied); (4) if a business license, storage area or POS system is visible, include it (Google lists these as "proof of management"); (5) optional short selfie at the front. Send us the raw files — don't trim or add effects.<br>
+<strong>Rejection triggers to avoid:</strong> stitched/edited clips · illegible signage · filmed location that doesn't match the listed address · same face reused across unrelated businesses (one operator face per metro cluster; after two denials on a location, change face AND framing).</div>
 
 <h3>Shot list — brick-and-mortar / storefront</h3>
 <ol>
@@ -294,6 +318,7 @@
 <ul class="task">
   <li>Demote textverified to backup; open HeroSMS (successor to SMS-Activate) + SMSPool/TextVerified non-VoIP (+ iDenfy backup); $50 test budget each.</li>
   <li>Buy owned US SIM lines (Mint/Visible preferred) — start with the §11e standing pool size; assign one permanent "appeal evidence" line.</li>
+  <li><strong>Zero-number teams (day 1):</strong> standing kit of 3 Hushed US + 1–2 CA ($25–40/mo) + 2 free TextNow backups → log all in <code>docs/PHONE_LEDGER.md</code> with area code → metro assignment. Default listing-number source until T3 SIMs arrive (§4 step zero).</li>
   <li>Triage account pool into A/B/C (§6a) in <code>docs/ACCOUNT_LEDGER.md</code>.</li>
   <li>Stand up anti-detect profiles + sticky US residential IPs for pilot accounts in metros where you can actually film on-ground video (or have vendor coverage, §11d).</li>
 </ul>
